@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GenAI Vocabulary Usage</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vocabulary Usage in GenAI Report</h1>
+  <p class="note">
+    Explicit = the term is used directly in the text.<br>
+    Implicit = the concept appears in the text without using the exact term.
+  </p>
+
+  <canvas id="usageChart" width="800" height="400"></canvas>
+
+  <script>
+    // 1) Вставь сюда свои термины
+    const labels = [
+      "Generative AI",
+      "Text-to-video model",
+      "Deepfake",
+      "Hallucination",
+      "Knowledge base",
+      "Retrieval Augmented Generation (RAG)",
+      "Grounding",
+      "Latency",
+      "Fine-tuning",
+      "Automatic summarization",
+      "Prompt engineering",
+      "Tokens",
+      "Temperature",
+      "Embedding",
+      "Evaluation metrics"
+    ];
+
+    const explicitData = [3, 1, 1, 2, 2, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0];
+
+    const implicitData = [4, 2, 1, 3, 3, 4, 3, 3, 2, 3, 2, 1, 0, 0, 2];
+
+
+    const ctx = document.getElementById("usageChart").getContext("2d");
+    const usageChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "Explicit usage",
+            data: explicitData
+          },
+          {
+            label: "Implicit usage",
+            data: implicitData
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            ticks: {
+              maxRotation: 60,
+              minRotation: 45
+            }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "Frequency"
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+  <!-- Дополнительно: табличка с теми же данными -->
+  <h2>Raw counts</h2>
+  <table>
+    <tr>
+      <th>Term</th>
+      <th>Explicit</th>
+      <th>Implicit</th>
+    </tr>
+    <tr><td>Generative AI</td><td>5</td><td>2</td></tr>
+    <tr><td>Text-to-video model</td><td>3</td><td>1</td></tr>
+    <tr><td>Deepfake</td><td>2</td><td>1</td></tr>
+    <tr><td>Knowledge base</td><td>4</td><td>2</td></tr>
+    <tr><td>RAG</td><td>2</td><td>3</td></tr>
+    <tr><td>Grounding</td><td>3</td><td>2</td></tr>
+    <tr><td>Latency</td><td>1</td><td>0</td></tr>
+    <tr><td>Fine-tuning</td><td>2</td><td>1</td></tr>
+    <tr><td>Automatic summarization</td><td>3</td><td>2</td></tr>
+    <tr><td>Prompt engineering</td><td>2</td><td>1</td></tr>
+  </table>
+
+</body>
+</html>
